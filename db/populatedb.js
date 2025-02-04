@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-
+require("dotenv").config();
 const { Client } = require("pg");
 
 const SQL = `
@@ -15,9 +15,11 @@ VALUES
   ('Damon');
 `;
 
+
 async function main() {
   console.log("seeding...");
   const client = new Client({
+    connectionString: process.env.STRINGPP,
   });
   await client.connect();
   await client.query(SQL);
