@@ -1,0 +1,19 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+</head>
+<body>
+  <h1><%= title %></h1>
+  <p>User list will go here</p>
+  <% if (locals.usernames) {%>
+    <% usernames.forEach(user => { %>
+      <li>
+       Username: <%= user.username %> 
+      </li>
+    <% }); %>
+  <% } %>
+  <a href="/new">Create a user</a>
+</body>
+</html>
