@@ -6,5 +6,7 @@ usersRouter.get("/", usersController.getUsernames);
 usersRouter.get("/new", usersController.createUsernameGet)
 usersRouter.post("/create", usersController.createUsernamePost)
 usersRouter.get("/sups", usersController.getAllSups)
+usersRouter.get("/search", usersController.getUsernamesBySearchTerm)
+usersRouter.post("/delete", usersController.deleteAllUsers)
 
 module.exports = usersRouter

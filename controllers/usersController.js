@@ -1,4 +1,8 @@
 const db = require('../db/queries')
+var url = require('url');
+const bodyParser = require('body-parser');
+const querystring = require('querystring');
+
 
 async function getUsernames(req, res) {
     const usernames = await db.getAllUsernames();
@@ -39,10 +43,30 @@ async function getUsernames(req, res) {
     });
   }
 
+  async function getUsernamesBySearchTerm(req, res) {
+    
+    const searchTerm = req.query.searchTerm
+    console.log(searchTerm)
+    const usernames = await db.searchUsernames(searchTerm);
+    console.log("Usernames: ", usernames);
+    res.render("index", {
+      title: `Usernames match ${searchTerm}`,
+      usernames: usernames
+    })
+  }
+
+  async function deleteAllUsers(req,res) {
+    await db.deleteAll();
+    console.log('deleted test')
+    res.redirect("/");
+  }
+
   module.exports = {
     getUsernames,
     createUsernameGet,
     createUsernamePost,
-    getAllSups
+    getAllSups,
+    getUsernamesBySearchTerm,
+    deleteAllUsers
   };
 
